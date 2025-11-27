@@ -41,3 +41,22 @@ export const userInfoContentEmail = style({
   color: vars.colors.subDark,
   fontWeight: vars.font.weight.medium,
 });
+
+export const logoutButton = style({
+  marginLeft: 'auto',
+  padding: '8px 16px',
+  backgroundColor: vars.colors.error || '#dc2626',
+  color: '#fff',
+  border: 'none',
+  borderRadius: vars.radius.sm,
+  fontSize: vars.font.size.sm,
+  fontWeight: vars.font.weight.semibold,
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  ':hover': {
+    opacity: 0.8,
+  },
+  ':active': {
+    transform: 'scale(0.95)',
+  },
+});
