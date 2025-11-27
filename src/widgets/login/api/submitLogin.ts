@@ -1,15 +1,23 @@
-import { post } from '@/shared/api';
-import { REQUEST } from '@/shared/api/request';
 import { useMutation } from '@tanstack/react-query';
 import type { Login } from '../types';
 import type { Token } from '@/shared/types';
 
-const submitLogin = async ({ email, password }: Login) => {
-  const response = await post<Login, Token>({
-    request: REQUEST.LOGIN,
-    data: { email: email, password: password },
-  });
-  return response.data;
+const generateRandomToken = (): string => {
+  const randomString = Math.random().toString(36).substring(2) + Date.now().toString(36);
+  return `demo_${randomString}`;
+};
+
+const submitLogin = async ({ email, password }: Login): Promise<Token> => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  if (!email || !password) {
+    throw new Error('이메일과 비밀번호를 입력해주세요.');
+  }
+
+  return {
+    accessToken: generateRandomToken(),
+    refreshToken: generateRandomToken(),
+  };
 };
 
 export const useSubmitLogin = () => {
